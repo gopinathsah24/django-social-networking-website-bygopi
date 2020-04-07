@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{%load crispy_forms_tags%}
+{% block content %} 
+
+
+<div class="central-meta" style="margin-left:200px; margin-top:20px; width:600px; background-color:white" >
+    <div class="new-postbox">
+        <figure>
+            <img src="{{ request.user.profile.profile_image.url }}" alt="">
+        </figure>
+        <div class="newpst-input">
+            
+
+<div class = "content-section">
+    <form method = 'POST' enctype="multipart/form-data">
+        {%csrf_token %}
+            <fieldset class = "form-group" >
+                <legend style="border:2px solid black;text-align:center;background-color:lightcyan">New Post</legend>
+                {{form|crispy}}
+            </fieldset>
+              
+    <div class = 'form_group'>
+        <button class = "btn btn-outline-info",
+        type = "submit">Post </button>
+    </div>
+</form>
+    
+
+</div>
+        </div>
+    </div>
+</div><!-- add post new box -->
+
+
+
+{% endblock %}

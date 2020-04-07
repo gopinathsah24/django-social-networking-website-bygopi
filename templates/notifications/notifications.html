@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% csrf_token %}
+    <section>
+        <div class="gap gray-bg">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row" id="page-contents">
+                            {% include 'includes/sidebar.html' %}
+                            <div class="col-lg-6">
+                                <div class="central-meta">
+                                    <div class="frnds">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item"><a class="active" href="#friends" data-toggle="tab">Notifications</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane active fade show " id="frends">
+                                                <ul class="nearby-contct">
+                                                    {% for notification in notifications %}
+                                                        <li>
+                                                            <div class="nearly-pepls">
+                                                                <figure>
+                                                                    {% if user.profile.profile_image.url %}
+                                                                        <a href="#" title=""><img src="{{ notification.actor.profile.profile_image.url }}" alt=""></a>
+                                                                    {% else %}
+                                                                        <a href="#" title=""><img src="{% static 'images/default.jpg' %}" alt=""></a>
+                                                                    {% endif %}
+                                                                </figure>
+                                                                <div class="pepl-info">
+                                                                    <h4><a href="#" title="">{{ notification.actor.username }}</a></h4>
+                                                                    <br>
+                                                                    
+                                                                    {% if not notification.deleted%}
+                                                                    {% if notification.unread%}
+                                                                    <small><strong>{{notification.actor.username}} {{notification.verb}}</strong></small>
+                                                                    
+                                                                    
+                                                                    {%else%}
+                            
+                                                                    <small>{{notification.actor.username}} {{notification.verb}}</small>
+                                                                    {%endif%}
+                                                                    {% if notification.type == "friend"%}
+                                                                    <a href="{%url 'friends:accept-request' notification.recipient.username%}" class="btn-sm btn-primary" style="position:absolute;right:120px;">Accept</a>
+                                                                    {%endif%}
+                                                                    <a href="{%url 'notifications:delete' notification.id%}" class="btn-sm btn-danger" style="position:absolute;right:30px;">Delete</a>
+                                                                    
+                                                                    {%endif%}
+                                                                    
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <div class="lodmore">
+                                                    <button class="btn-view btn-load-more"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- centerl meta -->
+
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        </section>
+                        {%endblock%}

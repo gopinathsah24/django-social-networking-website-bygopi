@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row" id="page-contents">
+                    {% include 'includes/sidebar.html' %}
+                    <div class="col-lg-6">
+                        <div class="central-meta">
+                            <div class="frnds">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a class="active" href="#friends" data-toggle="tab">Your Friends</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active fade show " id="frends">
+                                        <ul class="nearby-contct">
+                                            {% for user in users %}
+                                                <li>
+                                                    <div class="nearly-pepls">
+                                                        <figure>
+                                                            {% if user.profile.profile_image.url %}
+                                                                <a href="#" title=""><img src="{{ user.profile.profile_image.url }}" alt=""></a>
+                                                            {% else %}
+                                                                <a href="#" title=""><img src="{% static 'images/default.jpg' %}" alt=""></a>
+                                                            {% endif %}
+                                                        </figure>
+                                                        <div class="pepl-info">
+                                                            <h4><a href="#" title="">{{ user.username }}</a></h4>
+                                                            <span>{{user.about}}</span>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        <div class="loadmore">
+                                            <button class="btn-view btn-load-more"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- centerl met-->
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                
+
+                                    {%endblock%}
