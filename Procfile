@@ -1,1 +1,1 @@
-web:gunicorn django-social-network-master.wsgi
+web:gunicorn socialnetwork.wsgi
