@@ -11,7 +11,7 @@ channels-redis==2.4.1
 constantly==15.1.0
 cryptography==2.8
 daphne==2.4.1
-Django==3.0.3
+Django==3.0.14
 django-crispy-forms==1.9.0
 djangorestframework==3.11.0
 gunicorn==20.0.4
